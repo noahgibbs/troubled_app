@@ -27,7 +27,7 @@ class DelaysController < ApplicationController
   end
 
   def occasional_delay
-    if rand() > 0.99
+    if rand() > 0.90
       sleep 10
     end
     render :text => "My median response time is simply amazing! My AppDex numbers are impeccable!"

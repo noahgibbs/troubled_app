@@ -7,6 +7,7 @@ OPTS = Trollop::options do
   opt :number,       'Number of requests/thread',          :default => 1000,     :type => Integer
   opt :threads,      'Number of threads used',             :default => 1,        :type => Integer
   opt :host,         'Host for URL',                       :default => "localhost:8080"
+  opt :url,          'URL to test exclusively',                                  :type => String
   banner <<-END
 
     This is a simple stress-test for the troubled app, for easier profiling. It is not
@@ -41,6 +42,8 @@ end
 # Random seed
 srand Time.now.to_f
 
+RestClient.get "http://#{OPTS[:host]}/__start__"
+
 threads = (1..(OPTS[:threads])).map do
   Thread.new do
     begin
@@ -60,3 +63,7 @@ threads = (1..(OPTS[:threads])).map do
 end
 
 threads.each { |t| t.join }
+
+RestClient.get "http://#{OPTS[:host]}/__stop__"
+
+puts "\n\nTo see your data, visit http://#{OPTS[:host]}/__data__"

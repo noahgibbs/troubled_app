@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  get 'delays/idle'
+  get 'delays/busy_ruby'
+  get 'delays/database'
+  get 'delays/occasional'
+  get 'delays/garbage'
+  get 'delays/exception'
+
+  root 'delays#justfine'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

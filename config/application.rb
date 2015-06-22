@@ -26,5 +26,8 @@ module TroubledApp
     if ENV['USE_PERFTOOLS']
       config.middleware.use ::Rack::PerftoolsProfiler, :default_printer => 'gif', :bundler => true
     end
+    if ENV['USE_REQUEST_PROFILER']
+      config.middleware.use Rack::RequestProfiler
+    end
   end
 end

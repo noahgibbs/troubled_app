@@ -54,4 +54,17 @@ class DelaysController < ApplicationController
     end
     render :text => "Did you really sit through all that? It was #{my_var} that did it."
   end
+
+  def quadratic
+    s = ""
+    10_000.times { s += " " * 100 }
+    render :text => "That sure was a lot!"
+  end
+
+  def linear
+    s = ""
+    10_000.times { s.concat(" " * 100) }
+    render :text => "This somehow feels like less."
+  end
+
 end

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'delays/garbage'
   get 'delays/exception'
   get 'delays/awesome_combo'
+  get 'delays/quadratic'
+  get 'delays/linear'
 
   root 'delays#justfine'
 

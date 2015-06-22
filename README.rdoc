@@ -14,15 +14,43 @@ Set the env var USE_MINI_PROFILER when starting your Rails server. Something lik
 
     $ USE_MINI_PROFILER=1 unicorn -c config/unicorn.rb
 
-Then you can use the standard Rack-Mini-Profiler query params to view the various forms of
-Ruby dysfunction available in the TroubledApp.
+Then you can use the standard Rack-Mini-Profiler query params to view
+the various forms of Ruby dysfunction available in the TroubledApp.
 
 Some examples:
 
     http://localhost:8080/delays/garbage?pp=profile-gc
     http://localhost:8080/delays/awesome_combo?pp=flamegraph
 
-=== PerfTools
+The results display directly in your browser. You see the result of
+profiling the call, not the output itself.
+
+=== Request Profiler
+
+Set USE_REQUEST_PROFILER when starting the server.
+
+Then, supply the argument "?profile_request=true", or select another
+profiler like "?profile_request=memory".  See
+"https://github.com/justinweiss/request_profiler".
+
+Be prepared for slow performance.
+
+If you use the default printer (i.e. don't override it), results will
+be written into new HTML files under tmp/performance under your Rails
+directory.
+
+Ruby-Prof is used under the hood. It's frighteningly configurable -
+see "https://github.com/ruby-prof/ruby-prof".
+
+A given graph only reflects a single call. Results will either be
+printed to separate files, or overwritten with the latest.
+
+Examples:
+
+    curl "http://localhost:8080/delays/linear?profile_request=true"
+    curl "http://localhost:8080/delays/garbage?profile_request=true&printer=flat"
+
+=== PerfTools (NOT WORKING)
 
 You can use (or attempt to use) Rack-Perftools-Profiler:
 "https://github.com/bhb/rack-perftools_profiler". I couldn't get the
@@ -31,9 +59,12 @@ you can.
 
 Set the env var USE_PERFTOOLS when starting your Rails server.
 
-Then run "./perftools_test.rb -n 100 -t 5" or similar. The -n argument
-gives how many requests/thread to test with, while the -t argument
-specifies how many threads to run simultaneously. The default Unicorn
-config file starts three worker processes, so a thread value higher
-than three won't increase throughput, and higher than six should never
-increase throughput even slightly.
+For example use, run "./perftools_test.rb -n 100 -t 5" or similar. The
+-n argument gives how many requests/thread to test with, while the -t
+argument specifies how many threads to run simultaneously. The default
+Unicorn config file starts three worker processes, so a thread value
+higher than three won't increase throughput, and higher than six
+should never increase throughput even slightly.
+
+In general, for Perftools you'll need to visit the __start__ URL, then
+the __stop__ URL, then the __data__ URL.

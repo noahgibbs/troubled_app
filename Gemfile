@@ -31,6 +31,7 @@ gem 'rest-client'  # For stress test
 gem 'rack-mini-profiler', :require => false
 gem 'flamegraph'  # Supported in MRI 2.0+
 #gem 'stackprof', :require => false  # Supported in MRI 2.1+
+gem 'request_profiler'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

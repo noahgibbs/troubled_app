@@ -43,4 +43,15 @@ class DelaysController < ApplicationController
   def exception
     raise "Oh $DEITY no!"
   end
+
+  def awesome_combo
+    1_000.times do
+      "I am a new gratuitous string!" * 5_000
+    end
+    my_var = 3.71453234
+    30_000_000.times do
+      my_var = Math.log(my_var * 100)
+    end
+    render :text => "Did you really sit through all that? It was #{my_var} that did it."
+  end
 end

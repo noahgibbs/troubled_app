@@ -26,7 +26,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'trollop'      # For stress test
 gem 'rest-client'  # For stress test
 
-gem 'rack-perftools_profiler', :require => 'rack/perftools_profiler'
+# The profilers
+#gem 'rack-perftools_profiler', :require => 'rack/perftools_profiler'
+gem 'rack-mini-profiler', :require => false
+gem 'flamegraph'  # Supported in MRI 2.0+
+#gem 'stackprof', :require => false  # Supported in MRI 2.1+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

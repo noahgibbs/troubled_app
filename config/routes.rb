@@ -2,9 +2,10 @@ Rails.application.routes.draw do
   get 'delays/idle'
   get 'delays/busy_ruby'
   get 'delays/database'
-  get 'delays/occasional'
+  get 'delays/occasional_delay'
   get 'delays/garbage'
   get 'delays/exception'
+  get 'delays/awesome_combo'
 
   root 'delays#justfine'
 

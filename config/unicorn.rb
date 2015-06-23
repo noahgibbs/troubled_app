@@ -10,3 +10,6 @@ worker_processes 3
 # host unicorn runs on, and unlikely to detect disconnects even on a
 # fast LAN.
 check_client_connection false
+
+# Default timeout is 30 seconds. That's not always enough for good profiling.
+timeout 90

@@ -6,7 +6,9 @@ An example app, meant to be profiled and debugged.
 
 To start the server, "unicorn -c config/unicorn.rb"
 
-Next, see Rack-Mini-Profiler
+Next, see one of the profiler sections:
+
+USE_MINI_PROFILER, USE_REQUEST_PROFILER, USE_PERFTOOLS
 
 === Rack-Mini-Profiler
 
@@ -19,7 +21,9 @@ the various forms of Ruby dysfunction available in the TroubledApp.
 
 Some examples:
 
+    http://localhost:8080/delays/garbage?pp=help
     http://localhost:8080/delays/garbage?pp=profile-gc
+    http://localhost:8080/delays/garbage?pp=profile-time
     http://localhost:8080/delays/awesome_combo?pp=flamegraph
 
 The results display directly in your browser. You see the result of

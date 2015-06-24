@@ -52,7 +52,9 @@ printed to separate files, or overwritten with the latest.
 Examples:
 
     curl "http://localhost:8080/delays/linear?profile_request=true"
-    curl "http://localhost:8080/delays/garbage?profile_request=true&printer=flat"
+    curl "http://localhost:8080/delays/garbage?profile_request=WALL_TIME"
+    curl "http://localhost:8080/delays/idle?profile_request=CPU_TIME"
+    curl "http://localhost:8080/delays/idle?profile_request=WALL_TIME"
 
 === PerfTools (NOT WORKING)
 
@@ -72,3 +74,10 @@ should never increase throughput even slightly.
 
 In general, for Perftools you'll need to visit the __start__ URL, then
 the __stop__ URL, then the __data__ URL.
+
+== Configuration
+
+Make sure to turn ON cache_classes for profiling -- that's like
+production, but not like (default) development mode in Rails.
+
+You can find the setting under config/environments/NAME_OF_ENV.rb.
